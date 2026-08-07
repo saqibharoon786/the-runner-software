@@ -110,6 +110,20 @@ export function getServiceBySlug(slug: string): ServiceItem | undefined {
 }
 
 export function getServicePath(slug: string) {
+  // Prefer canonical path from the centralized datafile when available
+  try {
+    // Import lazily to avoid potential circular dependencies at module-eval time
+    // (Next.js resolves static imports during build; this keeps runtime safe).
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports
+    const { getServicePageData } = require("@/content/datafile");
+    const pageData = getServicePageData(slug);
+    if (pageData && pageData.seo && pageData.seo.canonicalPath) {
+      return pageData.seo.canonicalPath as string;
+    }
+  } catch (err) {
+    // fall back to existing behavior if import fails
+  }
+
   if (isSoftwareDevelopmentService(slug)) {
     return getSoftwareDevelopmentServicePath(slug);
   }
