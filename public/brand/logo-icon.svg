@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" role="img" aria-label="The Runner">
+  <defs>
+    <linearGradient id="trGrad" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E1B6A"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="40" height="40" rx="10" fill="#1E1B6A" fill-opacity="0.06"/>
+  <rect x="8" y="9" width="24" height="5" rx="1.25" fill="url(#trGrad)"/>
+  <rect x="16.5" y="9" width="5.5" height="30" rx="1.25" fill="url(#trGrad)"/>
+  <path d="M22 18.5H28.5C33.47 18.5 37.5 22.53 37.5 27.5C37.5 32.47 33.47 36.5 28.5 36.5H22V18.5Z" fill="#2563EB" fill-opacity="0.95"/>
+  <rect x="22" y="18.5" width="5.5" height="18" fill="url(#trGrad)"/>
+  <path d="M28.5 30.5L37 38.5" stroke="#3B82F6" stroke-width="5" stroke-linecap="round"/>
+</svg>

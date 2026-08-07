@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 56" fill="none" role="img" aria-label="The Runner Software Solutions">
+  <rect x="8" y="13" width="24" height="5" rx="1.25" fill="#2563EB"/>
+  <rect x="16.5" y="13" width="5.5" height="30" rx="1.25" fill="#2563EB"/>
+  <path d="M22 22.5H28.5C33.47 22.5 37.5 26.53 37.5 31.5C37.5 36.47 33.47 40.5 28.5 40.5H22V22.5Z" fill="#3B82F6"/>
+  <path d="M28.5 34.5L37 42.5" stroke="#3B82F6" stroke-width="5" stroke-linecap="round"/>
+  <text x="58" y="20" fill="#3B82F6" font-family="Segoe UI, system-ui, sans-serif" font-size="8" font-weight="600" letter-spacing="3.2">THE</text>
+  <text x="58" y="38" fill="#2563EB" font-family="Segoe UI, system-ui, sans-serif" font-size="22" font-weight="800" letter-spacing="0.8">RUNNER</text>
+  <text x="58" y="50" fill="#3B82F6" font-family="Segoe UI, system-ui, sans-serif" font-size="7.5" font-weight="600" letter-spacing="1.8">SOFTWARE SOLUTIONS</text>
+</svg>
