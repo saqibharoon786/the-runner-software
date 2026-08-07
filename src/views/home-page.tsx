@@ -14,11 +14,8 @@ import {
   homeIndustries,
   developmentProcess,
   trustSection,
-  businessOutcomes,
-  engagementModels,
   faqCategories,
   homeFaqs,
-  footerLinks,
   type FaqCategory,
 } from "@/data/home-page-content";
 import {
@@ -36,25 +33,15 @@ import {
   FolderCheck,
   Code2,
   UsersRound,
-  Mail,
-  Phone,
-  MapPin,
-  Facebook,
-  Twitter,
-  Linkedin,
-  Instagram,
   Search,
   Clock,
   Star,
   Quote,
   FileText,
-  ArrowUpRight,
 } from "lucide-react";
 import dashboardHero from "@/assets/dashboard-hero.jpg";
 import { SiteHeader } from "@/components/layout/site-header";
-import { BrandLogo } from "@/components/layout/brand-logo";
 import { PortfolioSection } from "@/components/portfolio/portfolio-section";
-import { NAVY_FOOTER } from "@/lib/brand";
 
 function FaqSchema() {
   const schema = {
@@ -574,56 +561,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 13. Business Outcomes */}
-      <section className="bg-gradient-to-br from-[#0f1a4e]/5 via-slate-50 to-[#3550c4]/5 py-24" aria-labelledby="outcomes-heading">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 id="outcomes-heading" className="text-4xl font-extrabold text-[#0b1437] md:text-5xl">{businessOutcomes.headline}</h2>
-            <p className="mt-4 text-[15px] text-slate-600">{businessOutcomes.subheadline}</p>
-          </div>
-          <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {businessOutcomes.items.map(({ icon: Icon, title, desc }, i) => (
-              <MotionCard key={title} delay={i * 0.05} className="rounded-2xl border border-white/80 bg-white/90 p-6 shadow-sm backdrop-blur-sm">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#0f1a4e]/10 text-[#0f1a4e]">
-                  <Icon className="h-5 w-5" aria-hidden="true" />
-                </div>
-                <h3 className="mt-4 font-bold text-[#0b1437]">{title}</h3>
-                <p className="mt-2 text-sm text-slate-600">{desc}</p>
-              </MotionCard>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 14. Engagement Models */}
-      <section className="py-24" aria-labelledby="engagement-heading">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 id="engagement-heading" className="text-4xl font-extrabold text-[#0b1437] md:text-5xl">{engagementModels.headline}</h2>
-            <p className="mt-4 text-[15px] text-slate-600">{engagementModels.subheadline}</p>
-          </div>
-          <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {engagementModels.models.map((model) => (
-              <div
-                key={model.title}
-                className={`rounded-2xl border p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg ${model.recommended ? "border-[#0f1a4e] bg-[#0f1a4e]/5 ring-2 ring-[#0f1a4e]/20" : "border-slate-200 bg-white"}`}
-              >
-                {model.recommended && (
-                  <span className="rounded-full bg-[#0f1a4e] px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white">Recommended</span>
-                )}
-                <h3 className={`font-bold text-[#0b1437] ${model.recommended ? "mt-3" : ""}`}>{model.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">{model.desc}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <Link href="/contact" className="inline-flex items-center gap-2 rounded-lg border border-[#0f1a4e] px-6 py-3.5 text-sm font-semibold text-[#0f1a4e] transition hover:bg-[#0f1a4e] hover:text-white">
-              {engagementModels.cta} <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* Contact CTA */}
       <section id="contact" className="bg-slate-50 py-20" aria-labelledby="cta-heading">
         <div className="mx-auto max-w-5xl px-6">
@@ -638,61 +575,6 @@ export default function HomePage() {
           </MotionSection>
         </div>
       </section>
-
-      {/* 15. Footer */}
-      <footer style={{ backgroundColor: NAVY_FOOTER }} className="text-white/80" role="contentinfo">
-        <div className="mx-auto max-w-7xl px-6 py-20">
-          <div className="grid grid-cols-2 gap-10 md:grid-cols-3 lg:grid-cols-6">
-            <div className="col-span-2">
-              <BrandLogo asLink={false} />
-              <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/60">
-                Enterprise software development for businesses worldwide — custom builds, cloud, AI, and long-term support.
-              </p>
-              <div className="mt-6 space-y-2 text-sm">
-                <div className="flex items-center gap-2"><Mail className="h-4 w-4" aria-hidden="true" /> [Email]</div>
-                <div className="flex items-center gap-2"><Phone className="h-4 w-4" aria-hidden="true" /> [Phone]</div>
-                <Link href="/contact" className="inline-flex items-center gap-2 font-semibold text-white transition hover:text-white/80">
-                  Book a Free Consultation <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-              </div>
-              <div className="mt-6 flex gap-3">
-                {[Facebook, Twitter, Linkedin, Instagram].map((Icon, i) => (
-                  <a key={i} href="#" aria-label="Social link" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition hover:bg-white/20">
-                    <Icon className="h-4 w-4" aria-hidden="true" />
-                  </a>
-                ))}
-              </div>
-            </div>
-            {[
-              { title: "Services", items: footerLinks.services },
-              { title: "Solutions", items: footerLinks.solutions },
-              { title: "Industries", items: footerLinks.industries },
-              { title: "Resources", items: footerLinks.resources },
-            ].map((col) => (
-              <nav key={col.title} aria-label={col.title}>
-                <div className="text-sm font-bold text-white">{col.title}</div>
-                <ul className="mt-5 space-y-2.5 text-sm text-white/70">
-                  {col.items.map((item) => (
-                    <li key={item}><span className="cursor-default">{item}</span></li>
-                  ))}
-                </ul>
-              </nav>
-            ))}
-          </div>
-          <div className="mt-12 border-t border-white/10 pt-8">
-            <p className="text-xs text-white/50"><MapPin className="mr-1 inline h-3.5 w-3.5" aria-hidden="true" />Locations: [Office locations — verified addresses only]</p>
-          </div>
-        </div>
-        <div className="border-t border-white/10">
-          <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 text-center text-xs text-white/50 md:flex-row md:text-left">
-            <div>© {new Date().getFullYear()} The Runner Software Solutions. All rights reserved.</div>
-            <div className="flex flex-wrap justify-center gap-6">
-              <a href="#" className="transition hover:text-white">Privacy Policy</a>
-              <a href="#" className="transition hover:text-white">Terms of Service</a>
-            </div>
-          </div>
-        </div>
-      </footer>
 
       {/* Sticky secondary CTA */}
       <AnimatePresence>

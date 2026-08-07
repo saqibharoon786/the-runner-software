@@ -24,6 +24,8 @@ function navHref(label: string) {
 export function SiteHeader() {
   const [openMenu, setOpenMenu] = useState<OpenMenu>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  
   const servicesTriggerRef = useRef<HTMLButtonElement>(null);
   const solutionsTriggerRef = useRef<HTMLButtonElement>(null);
   const industriesTriggerRef = useRef<HTMLButtonElement>(null);
@@ -45,6 +47,16 @@ export function SiteHeader() {
 
   const toggleMenu = useCallback((menu: "services" | "solutions" | "industries" | "case-studies" | "blog") => {
     setOpenMenu((current) => (current === menu ? null : menu));
+  }, []);
+
+  // Handle scroll events for sticky behavior
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -85,7 +97,17 @@ export function SiteHeader() {
   }, [mobileOpen]);
 
   return (
-    <header style={{ backgroundColor: NAVY }} className="relative z-50 text-white">
+    <header
+      style={{ 
+        backgroundColor: NAVY,
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
+        boxShadow: isScrolled ? "0 4px 20px rgba(0,0,0,0.15)" : "none",
+        transition: "box-shadow 0.3s ease"
+      }}
+      className="text-white"
+    >
       <div className="mx-auto flex min-w-0 max-w-[1440px] items-center justify-between gap-2 px-4 py-3 sm:px-6 sm:py-4 xl:gap-4 2xl:py-5">
         <BrandLogo onClick={() => setMobileOpen(false)} className="shrink-0" />
 
