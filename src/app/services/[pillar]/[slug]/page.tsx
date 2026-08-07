@@ -5,7 +5,7 @@ import ServicePageRenderer from "@/components/DesignPage";
 import ServiceSolutionPage from "@/views/service-solution-slug-page";
 
 type PageParams = {
-  params: Promise<{ pillar: string; slug: string }> | { pillar: string; slug: string };
+  params: Promise<{ pillar: string; slug: string }>;
 };
 
 export async function generateStaticParams() {
@@ -23,7 +23,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageParams): Promise<Metadata> {
-  const { pillar, slug } = (await params) as { pillar: string; slug: string };
+  const { pillar, slug } = await params;
   const pageData = getServicePageData(slug);
   if (!pageData) return {};
   return {
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: PageParams): Promise<Metadata
 }
 
 export default async function Page({ params }: PageParams) {
-  const { pillar, slug } = (await params) as { pillar: string; slug: string };
+  const { pillar, slug } = await params;
 
   const pageData = getServicePageData(slug);
   if (pageData) {
