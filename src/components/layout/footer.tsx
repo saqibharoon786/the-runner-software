@@ -19,7 +19,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-20">
         <div className="grid grid-cols-2 gap-10 md:grid-cols-3 lg:grid-cols-6">
           <div className="col-span-2">
-            <BrandLogo asLink={false} />
+            <BrandLogo asLink={false} darkBackground />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/60">
               Enterprise software development for businesses worldwide — custom builds, cloud, AI, and long-term support.
             </p>
@@ -43,17 +43,25 @@ export function Footer() {
             </div>
           </div>
           {[
-            { title: "Services", items: footerLinks.services },
-            { title: "Solutions", items: footerLinks.solutions },
-            { title: "Industries", items: footerLinks.industries },
-            { title: "Resources", items: footerLinks.resources },
+            { title: "Services", href: "/#services", items: footerLinks.services },
+            { title: "Solutions", href: "/solutions", items: footerLinks.solutions },
+            { title: "Industries", href: "/#industries", items: footerLinks.industries },
+            { title: "Resources", href: "/blog", items: footerLinks.resources },
           ].map((col) => (
             <nav key={col.title} aria-label={col.title}>
-              <div className="text-sm font-bold text-white">{col.title}</div>
+              <Link href={col.href} className="text-sm font-bold text-white hover:text-cyan-300 transition">
+                {col.title}
+              </Link>
               <ul className="mt-5 space-y-2.5 text-sm text-white/70">
                 {col.items.map((item) => (
                   <li key={item}>
-                    <span className="cursor-default">{item}</span>
+                    {col.title === "Solutions" ? (
+                      <Link href="/solutions" className="transition hover:text-white">
+                        {item}
+                      </Link>
+                    ) : (
+                      <span className="cursor-default">{item}</span>
+                    )}
                   </li>
                 ))}
               </ul>

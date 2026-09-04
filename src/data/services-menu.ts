@@ -89,20 +89,72 @@ export const allServices: ServiceItem[] = serviceColumns.flatMap((col) => col.it
 /** Pillar page for the Software Development service cluster */
 export const SOFTWARE_DEVELOPMENT_PILLAR_PATH = "/services/software-development" as const;
 
+/** Pillar page for the Emerging Technologies service cluster */
+export const EMERGING_TECHNOLOGIES_PILLAR_PATH = "/services/emerging-technologies" as const;
+
 /** Child services nested under the Software Development pillar (first mega-menu column) */
 export const softwareDevelopmentSlugs = new Set(serviceColumns[0].items.map((item) => item.slug));
 
+/** Child services nested under the Emerging Technologies pillar (third mega-menu column) */
+export const emergingTechnologiesSlugs = new Set(
+  serviceColumns[2].items.map((item) => item.slug).filter((slug) => slug !== "ui-ux-design")
+);
+
+/** Child services nested under the Design pillar */
+export const designSlugs = new Set(["ui-ux-design"]);
+
+/** Pillar page for the Design service cluster */
+export const DESIGN_PILLAR_PATH = "/services/design" as const;
+
+/** Child services nested under the Web & Mobile Development pillar (second mega-menu column) */
+export const webMobileDevelopmentSlugs = new Set(serviceColumns[1].items.map((item) => item.slug));
+
+/** Pillar page for the Web & Mobile Development service cluster */
+export const WEB_MOBILE_DEVELOPMENT_PILLAR_PATH = "/services/web-mobile-development" as const;
+
 export const serviceSlugs = new Set(allServices.map((s) => s.slug));
 
-/** Flat-route slugs still served from `/[slug]` (non–software-development services + solutions) */
-export const flatServiceSlugs = new Set([...serviceSlugs].filter((slug) => !softwareDevelopmentSlugs.has(slug)));
+/** Flat-route slugs still served from `/[slug]` (non-pillar services) */
+export const flatServiceSlugs = new Set(
+  [...serviceSlugs].filter(
+    (slug) =>
+      !softwareDevelopmentSlugs.has(slug) &&
+      !emergingTechnologiesSlugs.has(slug) &&
+      !designSlugs.has(slug) &&
+      !webMobileDevelopmentSlugs.has(slug)
+  )
+);
 
 export function isSoftwareDevelopmentService(slug: string) {
   return softwareDevelopmentSlugs.has(slug);
 }
 
+export function isEmergingTechnologiesService(slug: string) {
+  return emergingTechnologiesSlugs.has(slug);
+}
+
+export function isDesignService(slug: string) {
+  return designSlugs.has(slug);
+}
+
+export function isWebMobileDevelopmentService(slug: string) {
+  return webMobileDevelopmentSlugs.has(slug);
+}
+
 export function getSoftwareDevelopmentServicePath(slug: string) {
   return `${SOFTWARE_DEVELOPMENT_PILLAR_PATH}/${slug}` as const;
+}
+
+export function getEmergingTechnologiesServicePath(slug: string) {
+  return `${EMERGING_TECHNOLOGIES_PILLAR_PATH}/${slug}` as const;
+}
+
+export function getDesignServicePath(slug: string) {
+  return `${DESIGN_PILLAR_PATH}/${slug}` as const;
+}
+
+export function getWebMobileDevelopmentServicePath(slug: string) {
+  return `${WEB_MOBILE_DEVELOPMENT_PILLAR_PATH}/${slug}` as const;
 }
 
 export function getServiceBySlug(slug: string): ServiceItem | undefined {
@@ -114,7 +166,7 @@ export function getServicePath(slug: string) {
   try {
     // Import lazily to avoid potential circular dependencies at module-eval time
     // (Next.js resolves static imports during build; this keeps runtime safe).
-    // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports
+    // eslint-disable-next-line
     const { getServicePageData } = require("@/content/datafile");
     const pageData = getServicePageData(slug);
     if (pageData && pageData.seo && pageData.seo.canonicalPath) {
@@ -126,6 +178,15 @@ export function getServicePath(slug: string) {
 
   if (isSoftwareDevelopmentService(slug)) {
     return getSoftwareDevelopmentServicePath(slug);
+  }
+  if (isEmergingTechnologiesService(slug)) {
+    return getEmergingTechnologiesServicePath(slug);
+  }
+  if (isDesignService(slug)) {
+    return getDesignServicePath(slug);
+  }
+  if (isWebMobileDevelopmentService(slug)) {
+    return getWebMobileDevelopmentServicePath(slug);
   }
   return `/${slug}` as const;
 }

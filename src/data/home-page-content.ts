@@ -47,10 +47,10 @@ export const heroContent = {
   secondaryCta: "View Our Work",
   trustLine: "Trusted by Growing Businesses Worldwide",
   metrics: [
-    { value: "[X]+", label: "Years in Software Engineering" },
-    { value: "[X]+", label: "Projects Delivered Globally" },
-    { value: "[X]+", label: "Dedicated Engineers & Architects" },
-    { value: "[X]%", label: "Client Retention Rate" },
+    { value: "10+", label: "Years in Software Engineering" },
+    { value: "200+", label: "Projects Delivered Globally" },
+    { value: "50+", label: "Dedicated Engineers & Architects" },
+    { value: "95%", label: "Client Retention Rate" },
   ],
   securityChips: [
     { icon: "🔒", title: "Security-First Development", desc: "Secure coding, code review, and infrastructure hardening built into every sprint" },

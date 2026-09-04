@@ -606,7 +606,7 @@ export default function ServicePageRenderer({ pageData, slug, customFaqAnswer }:
         <section className="py-20" aria-labelledby="portfolio-heading">
           <div className="mx-auto max-w-5xl px-6">
             <h2 id="portfolio-heading" className="text-3xl font-extrabold text-[#0b1437] md:text-4xl">Portfolio Preview</h2>
-            <p className="mt-4 text-[15px] text-slate-600">Explore a selection of the systems we've built for clients across industries.</p>
+            <p className="mt-4 text-[15px] text-slate-600">Explore a selection of the systems we&apos;ve built for clients across industries.</p>
             <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
               {portfolioPreview.length > 0 ? (
                 portfolioPreview.map((project) => (
