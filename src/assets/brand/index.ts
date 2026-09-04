@@ -1,5 +1,7 @@
 /** Static logo asset paths (public/brand) */
 export const logoAssets = {
+  runner: "/brand/logo-runner.png",
+  runnerWhite: "/brand/logo-runner-white.png",
   horizontal: "/brand/logo-horizontal.svg",
   stacked: "/brand/logo-stacked.svg",
   icon: "/brand/logo-icon.svg",

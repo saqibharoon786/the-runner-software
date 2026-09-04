@@ -4,7 +4,20 @@ import type { RefObject } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Sparkles, Star } from "lucide-react";
-import { serviceColumns, getServicePath, SOFTWARE_DEVELOPMENT_PILLAR_PATH, type ServiceItem } from "@/data/services-menu";
+import {
+  serviceColumns,
+  getServicePath,
+  SOFTWARE_DEVELOPMENT_PILLAR_PATH,
+  WEB_MOBILE_DEVELOPMENT_PILLAR_PATH,
+  EMERGING_TECHNOLOGIES_PILLAR_PATH,
+  type ServiceItem,
+} from "@/data/services-menu";
+
+const pillarColumnPaths: Record<number, string> = {
+  0: SOFTWARE_DEVELOPMENT_PILLAR_PATH,
+  1: WEB_MOBILE_DEVELOPMENT_PILLAR_PATH,
+  2: EMERGING_TECHNOLOGIES_PILLAR_PATH,
+};
 import { NAVY } from "@/lib/brand";
 import { megaMenuMobileShellClass, megaMenuPanelPaddingClass, megaMenuPanelRootClass, megaMenuNavScrollClass } from "@/lib/mega-menu-layout";
 
@@ -87,9 +100,9 @@ export function ServicesMegaMenuPanel({ onNavigate, className = "", compact = fa
       <div className={`grid grid-cols-1 lg:grid-cols-4 ${compact ? "gap-4" : "gap-8"}`}>
         {serviceColumns.map((column, colIndex) => (
           <div key={column.title} className="min-w-0">
-            {colIndex === 0 ? (
+            {pillarColumnPaths[colIndex] ? (
               <Link
-                href={SOFTWARE_DEVELOPMENT_PILLAR_PATH}
+                href={pillarColumnPaths[colIndex]}
                 onClick={onNavigate}
                 className="group inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-[0.2em] text-[#0f1a4e] transition hover:text-[#0c1440]"
               >

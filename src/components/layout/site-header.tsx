@@ -109,7 +109,7 @@ export function SiteHeader() {
       className="text-white"
     >
       <div className="mx-auto flex min-w-0 max-w-[1440px] items-center justify-between gap-2 px-4 py-3 sm:px-6 sm:py-4 xl:gap-4 2xl:py-5">
-        <BrandLogo onClick={() => setMobileOpen(false)} className="shrink-0" />
+        <BrandLogo onClick={() => setMobileOpen(false)} darkBackground className="shrink-0" />
 
         <nav
           className="hidden min-w-0 flex-1 items-center justify-center gap-3 whitespace-nowrap text-[13px] font-medium text-white/80 xl:flex 2xl:gap-5 2xl:text-[14px]"
@@ -138,18 +138,29 @@ export function SiteHeader() {
             if (label === "Solutions") {
               return (
                 <div key={label} className="shrink-0" onMouseEnter={() => openMenuById("solutions")} onMouseLeave={scheduleClose}>
-                  <button
-                    ref={solutionsTriggerRef}
-                    type="button"
-                    aria-expanded={openMenu === "solutions"}
-                    aria-haspopup="true"
-                    aria-controls="solutions-mega-menu"
-                    onClick={() => toggleMenu("solutions")}
+                  <Link
+                    href="/solutions"
+                    onClick={closeMenu}
                     className={`flex shrink-0 items-center gap-0.5 whitespace-nowrap transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-sm ${openMenu === "solutions" ? "text-white" : ""}`}
                   >
                     {label}
-                    <ChevronDown className={`h-3.5 w-3.5 transition duration-200 ${openMenu === "solutions" ? "rotate-180" : ""}`} aria-hidden="true" />
-                  </button>
+                    <button
+                      ref={solutionsTriggerRef}
+                      type="button"
+                      aria-expanded={openMenu === "solutions"}
+                      aria-haspopup="true"
+                      aria-controls="solutions-mega-menu"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        toggleMenu("solutions");
+                      }}
+                      className="p-0.5 text-white/70 hover:text-white focus:outline-none"
+                      aria-label="Toggle solutions menu"
+                    >
+                      <ChevronDown className={`h-3.5 w-3.5 transition duration-200 ${openMenu === "solutions" ? "rotate-180" : ""}`} aria-hidden="true" />
+                    </button>
+                  </Link>
                 </div>
               );
             }
@@ -328,15 +339,27 @@ export function SiteHeader() {
                   if (label === "Solutions") {
                     return (
                       <div key={label} className="border-b border-white/10 py-2">
-                        <button
-                          type="button"
-                          aria-expanded={openMenu === "solutions"}
-                          onClick={() => setOpenMenu((current) => (current === "solutions" ? null : "solutions"))}
-                          className="flex w-full items-center justify-between py-3 text-left text-[15px] font-medium text-white"
-                        >
-                          {label}
-                          <ChevronDown className={`h-4 w-4 transition ${openMenu === "solutions" ? "rotate-180" : ""}`} aria-hidden="true" />
-                        </button>
+                        <div className="flex items-center justify-between py-3">
+                          <Link
+                            href="/solutions"
+                            onClick={() => {
+                              closeMenu();
+                              setMobileOpen(false);
+                            }}
+                            className="text-[15px] font-medium text-white hover:underline"
+                          >
+                            Solutions
+                          </Link>
+                          <button
+                            type="button"
+                            aria-expanded={openMenu === "solutions"}
+                            onClick={() => setOpenMenu((current) => (current === "solutions" ? null : "solutions"))}
+                            className="p-1 text-white/80"
+                            aria-label="Toggle solutions sub-menu"
+                          >
+                            <ChevronDown className={`h-4 w-4 transition ${openMenu === "solutions" ? "rotate-180" : ""}`} aria-hidden="true" />
+                          </button>
+                        </div>
                         <SolutionsMegaMenuMobile
                           isOpen={openMenu === "solutions"}
                           onClose={() => {

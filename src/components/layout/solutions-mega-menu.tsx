@@ -109,19 +109,49 @@ export function SolutionsMegaMenuPanel({ onNavigate, className = "", compact = f
 
   return (
     <div className={`${megaMenuPanelRootClass(compact)} ${className}`}>
+      <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50/80 px-6 py-3 text-xs font-bold text-[#0b1437]">
+        <span className="text-slate-500 font-semibold">Explore Solutions By Industry</span>
+        <Link
+          href="/solutions"
+          onClick={onNavigate}
+          className="inline-flex items-center gap-1.5 rounded-lg bg-[#0f1a4e] px-3 py-1.5 text-xs font-bold text-white shadow-sm transition hover:bg-[#1a2d6e]"
+        >
+          View All Solutions Page →
+        </Link>
+      </div>
       <div className={`grid grid-cols-1 xl:grid-cols-4 ${megaMenuPanelPaddingClass(compact)}`}>
         {solutionColumns.map((column) => {
           const ColIcon = column.icon;
           return (
             <div key={column.title} className="min-w-0">
-              <div className="flex items-start gap-3 border-b border-slate-100 pb-4">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#0f1a4e] to-[#3550c4] text-white shadow-md shadow-[#0f1a4e]/20">
-                  <ColIcon className="h-5 w-5" aria-hidden="true" />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="text-sm font-extrabold text-[#0b1437]">{column.title}</h3>
-                  <p className="mt-1 text-[11px] leading-relaxed text-slate-500">{column.description}</p>
-                </div>
+              <div className="border-b border-slate-100 pb-4">
+                {column.href ? (
+                  <Link
+                    href={column.href}
+                    onClick={onNavigate}
+                    className="group flex items-start gap-3 rounded-lg p-1.5 -m-1.5 transition hover:bg-slate-100/80"
+                  >
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#0f1a4e] to-[#3550c4] text-white shadow-md shadow-[#0f1a4e]/20 transition group-hover:scale-105">
+                      <ColIcon className="h-5 w-5" aria-hidden="true" />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="text-sm font-extrabold text-[#0b1437] transition group-hover:text-[#0f1a4e] group-hover:underline">
+                        {column.title}
+                      </h3>
+                      <p className="mt-1 text-[11px] leading-relaxed text-slate-500">{column.description}</p>
+                    </div>
+                  </Link>
+                ) : (
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#0f1a4e] to-[#3550c4] text-white shadow-md shadow-[#0f1a4e]/20">
+                      <ColIcon className="h-5 w-5" aria-hidden="true" />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="text-sm font-extrabold text-[#0b1437]">{column.title}</h3>
+                      <p className="mt-1 text-[11px] leading-relaxed text-slate-500">{column.description}</p>
+                    </div>
+                  </div>
+                )}
               </div>
               <nav aria-label={column.title} className={navClass}>
                 {column.items.map((item) => (

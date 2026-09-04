@@ -44,6 +44,7 @@ export type SolutionColumn = {
   title: string;
   description: string;
   icon: LucideIcon;
+  href?: string;
   items: SolutionItem[];
 };
 
@@ -52,6 +53,7 @@ export const solutionColumns: SolutionColumn[] = [
     title: "Healthcare Solutions",
     description: "Digital healthcare solutions for clinics, hospitals and medical organizations.",
     icon: Hospital,
+    href: "/solutions/healthcare",
     items: [
       { title: "Hospital Management System", slug: "hospital-management-system", description: "Unified platform for patients, billing, pharmacy, labs and staff.", icon: Hospital, featured: true },
       { title: "Clinic Management System", slug: "clinic-management-system", description: "Streamline appointments, EMR, billing and patient communication.", icon: Stethoscope },
