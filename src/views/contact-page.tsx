@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft, Mail, Phone, MapPin } from "lucide-react";
 import { BrandLogo } from "@/components/layout/brand-logo";
-import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/brand";
+import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/brand";
 
 const NAVY = "#0f1a4e";
 
@@ -68,7 +68,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <div className="text-xs text-white/60">Office</div>
-                      <div className="font-medium">Lahore, Pakistan</div>
+                      <div className="font-medium">{CONTACT_ADDRESS}</div>
                     </div>
                   </div>
                 </div>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BrandLogo } from "@/components/layout/brand-logo";
-import { CONTACT_EMAIL, CONTACT_PHONE, NAVY_FOOTER } from "@/lib/brand";
+import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_PHONE, NAVY_FOOTER } from "@/lib/brand";
 import { footerLinks } from "@/data/home-page-content";
 import {
   ArrowUpRight,
@@ -70,7 +70,7 @@ export function Footer() {
         </div>
         <div className="mt-12 border-t border-white/10 pt-8">
           <p className="text-xs text-white/50">
-            <MapPin className="mr-1 inline h-3.5 w-3.5" aria-hidden="true" />Locations: [Office locations — verified addresses only]
+            <MapPin className="mr-1 inline h-3.5 w-3.5" aria-hidden="true" />{CONTACT_ADDRESS}
           </p>
         </div>
       </div>
