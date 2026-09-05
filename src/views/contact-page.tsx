@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft, Mail, Phone, MapPin } from "lucide-react";
 import { BrandLogo } from "@/components/layout/brand-logo";
+import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/brand";
 
 const NAVY = "#0f1a4e";
 
@@ -49,7 +50,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <div className="text-xs text-white/60">Email</div>
-                      <div className="font-medium">hello@therunner.dev</div>
+                      <a href={`mailto:${CONTACT_EMAIL}`} className="font-medium hover:underline">{CONTACT_EMAIL}</a>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -58,7 +59,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <div className="text-xs text-white/60">Phone</div>
-                      <div className="font-medium">+92 300 0000000</div>
+                      <a href={`tel:${CONTACT_PHONE}`} className="font-medium hover:underline">{CONTACT_PHONE}</a>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">

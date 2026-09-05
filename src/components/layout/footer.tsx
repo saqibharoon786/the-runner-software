@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BrandLogo } from "@/components/layout/brand-logo";
-import { NAVY_FOOTER } from "@/lib/brand";
+import { CONTACT_EMAIL, CONTACT_PHONE, NAVY_FOOTER } from "@/lib/brand";
 import { footerLinks } from "@/data/home-page-content";
 import {
   ArrowUpRight,
@@ -24,12 +24,12 @@ export function Footer() {
               Enterprise software development for businesses worldwide — custom builds, cloud, AI, and long-term support.
             </p>
             <div className="mt-6 space-y-2 text-sm">
-              <div className="flex items-center gap-2">
-                <Mail className="h-4 w-4" aria-hidden="true" /> [Email]
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone className="h-4 w-4" aria-hidden="true" /> [Phone]
-              </div>
+              <a href={`mailto:${CONTACT_EMAIL}`} className="flex items-center gap-2 transition hover:text-white">
+                <Mail className="h-4 w-4" aria-hidden="true" /> {CONTACT_EMAIL}
+              </a>
+              <a href={`tel:${CONTACT_PHONE}`} className="flex items-center gap-2 transition hover:text-white">
+                <Phone className="h-4 w-4" aria-hidden="true" /> {CONTACT_PHONE}
+              </a>
               <Link href="/contact" className="inline-flex items-center gap-2 font-semibold text-white transition hover:text-white/80">
                 Book a Free Consultation <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </Link>
